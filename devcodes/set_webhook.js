@@ -1,5 +1,5 @@
 var unirest = require('unirest');
-var config = require(__dirname + '/modules/config.js');
+var config = require(__dirname + '/config.js');
 
 // Making a Post Request
 unirest.post(config.BOTURL + '/setWebHook')
