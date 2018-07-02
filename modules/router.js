@@ -87,8 +87,8 @@ function sendMessage(chat_id, text, keyboard = []){
             resize_keyboard: true,
             one_time_keyboard: true,
             keyboard: [
-                ['yes'],
-                ['no']
+                [{text:'yes'}],
+                [{text:'no'}]
             ],
         }
     })
