@@ -84,7 +84,7 @@ function sendMessage(chat_id, text, keyboard = []){
         'reply_markup':keyboard
     })
     .end(function(response){
-    return;
+    console.log(response);
     });
 }
 module.exports = router;
