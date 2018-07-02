@@ -41,7 +41,7 @@ app.get('/',function(req, res){
 });
 
 app.get('/ssl',function(req, res){
-    res.sendFile(__dirname + '/private/key.pem');
+    res.sendFile(__dirname + '/private/public.pem');
 });
 
 

@@ -1,8 +1,8 @@
 module.exports = {
-    PORT:80,
+    PORT:443,
     MYSQL:{
         host:'localhost',
-        user:'admin',
+        user:'root',
         password:'9092301202',
         database:'mydb'
     },
