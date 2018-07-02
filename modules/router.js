@@ -42,7 +42,7 @@ function registerUser(message, connection){
     connection.query("SELECT * FROM bot_suers WHERE userid = '" + message.from.id + "'", function (error, result){
 
         if(error)
-        return;
+        return console.log(error);
 
         // Register new user
         if(result.length === 0){
