@@ -1,6 +1,7 @@
 
 var unirest = require('unirest');
 var config = require('./config');
+var keyboard = require('./keyboard');
 
 function router(req, res, connection){
     
@@ -40,6 +41,7 @@ function handleCommands(message, connection){
 }
 
 function registerUser(message, connection){
+    
     // Check for userID
     connection.query("SELECT * FROM bot_users WHERE userid = '" + message.from.id + "'", function (error, result){
 
@@ -61,14 +63,12 @@ function registerUser(message, connection){
                 
                 // Welcome message
                 sendMessage(message.chat.id, 'Registered ' + message.from.first_name);
-
-
             });
 
         } else {
 
             // Welcome message
-            sendMessage(message.chat.id, 'Logined ' + message.from.first_name);
+            sendMessage(message.chat.id, 'Logined ' + message.from.first_name, keyboard.welcome_keyboard);
 
         }
 
@@ -77,10 +77,13 @@ function registerUser(message, connection){
 }
 
 
-function sendMessage(chat_id, text){
+function sendMessage(chat_id, text, keyboard = []){
     unirest
     .post(config.BOTURL + 'sendMessage')
-    .send({'chat_id':chat_id,'text':text})
+    .send(
+        {'chat_id':chat_id,
+        'text':text,
+        'reply_markup':keyboard})
     .end(function(response){
     console.log(response);
 });
