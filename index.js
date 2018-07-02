@@ -4,6 +4,7 @@ var fs = require('fs');
 var https = require('https');
 var app = express();
 var mysql = require('mysql');
+var unirest = require('unirest');
 
 // Read SSL Certificates
 var private_key = fs.readFile(__dirname + '/ssl/key.pem');
@@ -35,6 +36,13 @@ https.createServer({
 // Routing
 app.use('/', require(__dirname + '/modules/routes/index.js')('Hello'));
 
+
+// Making a Post Request
+unirest.post(config.BOTURL + '/setWebHook')
+.send({'foo':'bar'})
+.end(function(response){
+    console.log(response);
+});
 
 
 
