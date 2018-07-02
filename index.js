@@ -33,7 +33,7 @@ https.createServer({
 });
 
 // Routing
-app.get('/',function(req, res){
+app.post('/',function(req, res){
 
     console.log(req);
     res.sendStatus(200);
