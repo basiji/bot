@@ -1,5 +1,9 @@
 module.exports = {
     welcome_keyboard : {
-        keyboard:[[{text:'salam'},{text:'bye'}]]
+        keyboard: [
+            ["Aut", "Neg"],
+        ],
+        one_time_keyboard: true,
+        resize_keyboard: true,
     }
 }
