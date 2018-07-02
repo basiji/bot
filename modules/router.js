@@ -8,13 +8,13 @@ function router(req, res, connection){
     var userid = req.body.message.from.id;
 
     // Get message 
-    var message = parseMessage(req.body.message);    
+    var message = req.body.message;    
     
     // * Log Message
     console.log(message);
     
     // Check for commands
-    if(message.type === 'bot_command')
+    if(getMessageType(message) === 'bot_command')
         handleCommands(message, connection);
     
     // Check for user inputs
@@ -85,20 +85,11 @@ function sendMessage(chat_id, text){
 
 }
 
-
-function parseMessage(message){
-    // Command message
+function getMessageType(message){
     if(message.entities)
-        return {
-            type:message.entities[0].type,
-            text:message.text
-        };
-    // User input message
-    else return {
-        type:'text',
-        text:message.text
-    }
+        return message.entities[0].type;    
+    else 
+        return 'user_input';
 }
-
 
 module.exports = router;
