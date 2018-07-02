@@ -34,8 +34,18 @@ function handleMessage(message, connection){
         sendMessage(message.chat.id, 'Please select :',keyboard.voucher_menu);
         break;
 
+        // Custom price voucher
+        case constants.CUSTOM_VOUCHER:
+        sendMessage(message.chat.id, 'Enter custom price : ');
+        break;
+
         default:
-        return;
+            if(message.text.includes('$')){
+                // Voucher Selected
+                var price = message.text.split(' ')[0];
+                sendMessage(message.chat.id, 'You selected : ' + price);
+            } 
+        
     }
 }
 

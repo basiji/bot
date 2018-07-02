@@ -21,7 +21,7 @@ module.exports = {
             keyboard: [
                 [{text:'5 $'}, {text:'10 $'}, {text:'20 $'}],
                 [{text:'50 $'},{text:'100 $'}],
-                [{text:'مبلغ دلخواه (تا سقف 500 دلار)'}]
+                [{text:constants.CUSTOM_VOUCHER}]
             ]
         }),
 
