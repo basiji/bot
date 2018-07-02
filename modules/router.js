@@ -12,6 +12,9 @@ function router(req, res, connection){
     // Get message 
     var message = req.body.message;    
     
+    // * Log message
+    console.log(message);
+
     handleMessage(message, connection);
 
     return res.sendStatus(200);
