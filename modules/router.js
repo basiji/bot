@@ -39,7 +39,7 @@ function handleCommands(message, connection){
 
 function registerUser(message, connection){
     // Check for userID
-    connection.query("SELECT * FROM bot_suers WHERE userid = '" + message.from.id + "'", function (error, result){
+    connection.query("SELECT * FROM bot_users WHERE userid = '" + message.from.id + "'", function (error, result){
 
         if(error)
         return console.log(error);
