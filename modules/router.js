@@ -83,7 +83,15 @@ function sendMessage(chat_id, text, keyboard = []){
     .send(
         {'chat_id':chat_id,
         'text':text,
-        'reply_markup':keyboard})
+        'reply_markup':{
+            resize_keyboard: true,
+            one_time_keyboard: true,
+            keyboard: [
+                ['yes'],
+                ['no']
+            ],
+        }
+    })
     .end(function(response){
     console.log(response);
 });
