@@ -1,6 +1,14 @@
 function router(req, res, connection){
-    console.log(req.body.message);
-    return res.json('hello world');
+    
+    // Get user ID
+    var userid = req.body.message.from.id;
+
+    // Get message type
+    var type = req.body.message.entities[0].type;
+
+    console.log(type);
+    res.sendStatus(200);
+
 }
 
 module.exports = router;
