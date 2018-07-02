@@ -56,7 +56,7 @@ app.post('/',function(req, res){
 
 });
 
-// Download SSL certificate
+// Download SSL
 app.get('/ssl',function(req, res){
     res.sendFile(__dirname + '/private/public.pem');
 });

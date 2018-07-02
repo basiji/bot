@@ -1,6 +1,7 @@
 
 var unirest = require('unirest');
 var config = require('./config');
+var constants = require('./constants');
 var keyboard = require('./keyboard');
 
 function router(req, res, connection){
@@ -11,30 +12,23 @@ function router(req, res, connection){
     // Get message 
     var message = req.body.message;    
     
-    // * Log Message
-    console.log(message);
-    
-    // Check for commands
-    if(getMessageType(message) === 'bot_command')
-        handleCommands(message, connection);
-    
-    // Check for user inputs
-    else 
-        handleInputs(message, connection);
+    handleMessage(message, connection);
 
     return res.sendStatus(200);
 }
 
 
-function handleCommands(message, connection){
+function handleMessage(message, connection){
     switch(message.text){
+        
+        // Start -> register / login -> main menu
         case '/start':
-        // Register or Login user
         registerUser(message, connection);
+        break;
 
-        case '/voucher':
-        // Select voucher menu
-        //prepareVouchers();
+        // voucher -> voucher list -> select
+        case 'خرید ووچر پرفکت مانی':
+        sendMessage(message.chat.id, 'Please select :',keyboard.voucher_menu);
         break;
 
         default:
@@ -78,26 +72,16 @@ function registerUser(message, connection){
     });
 }
 
-
 function sendMessage(chat_id, text, keyboard = []){
     unirest
     .post(config.BOTURL + 'sendMessage')
-    .send(
-        {'chat_id':chat_id,
+    .send({
+        'chat_id':chat_id,
         'text':text,
         'reply_markup':keyboard
     })
     .end(function(response){
-    console.log(response);
-});
-
+    return;
+    });
 }
-
-function getMessageType(message){
-    if(message.entities)
-        return message.entities[0].type;    
-    else 
-        return 'user_input';
-}
-
 module.exports = router;
