@@ -1,5 +1,5 @@
 module.exports = {
-    welcome_keyboard : [{
-        'text':'test button'}
-    ]
+    welcome_keyboard : {
+        keyboard:[{text:'salam'},{text:'bye'}]
+    }
 }
