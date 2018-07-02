@@ -9,8 +9,6 @@ function router(req, res, connection){
     // Get message type
     var message = parseMessage(req.body.message);    
     console.log(message);
-
-    console.log(type);
     res.sendStatus(200);
 
 }
@@ -19,8 +17,8 @@ function parseMessage(message){
     // Command message
     if(message.entities)
         return {
-            type:'command',
-            text:message.entities[0].text
+            type:message.entities[0].type,
+            text:message.text
         };
     // User input message
     else return {
