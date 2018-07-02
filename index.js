@@ -4,11 +4,10 @@ var fs = require('fs');
 var https = require('https');
 var app = express();
 var mysql = require('mysql');
-var unirest = require('unirest');
 
 // Read SSL Certificates
-var private_key = fs.readFile(__dirname + '/ssl/key.pem');
-var certificate = fs.readFile(__dirname + '/ssl/cert.pem');
+var private_key = fs.readFile(__dirname + '/private/key.pem');
+var certificate = fs.readFile(__dirname + '/private/cert.pem');
 
 // Setup MySQL Connection
 var connection = mysql.createConnection(config.MYSQL);
@@ -34,15 +33,14 @@ https.createServer({
 });
 
 // Routing
-app.use('/', require(__dirname + '/modules/routes/index.js')('Hello'));
+app.get('/',function(req, res){
 
+    console.log(req);
+    res.sendStatus(200);
 
-// Making a Post Request
-unirest.post(config.BOTURL + '/setWebHook')
-.send({'foo':'bar'})
-.end(function(response){
-    console.log(response);
 });
+
+
 
 
 
