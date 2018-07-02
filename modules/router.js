@@ -50,7 +50,7 @@ function registerUser(message, connection){
             connection.query("INSERT INTO bot_users SET ?",
             {
                 userid:message.from.id,
-                name:message.form.first_name,
+                name:message.from.first_name,
             },
             function(error){
                 
