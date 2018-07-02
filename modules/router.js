@@ -20,6 +20,8 @@ function router(req, res, connection){
     // Check for user inputs
     else 
         handleInputs(message, connection);
+
+    return res.sendStatus(200);
 }
 
 
