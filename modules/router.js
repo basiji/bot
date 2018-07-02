@@ -45,7 +45,7 @@ function handleMessage(message, connection){
                 // Voucher Selected
                 var price = message.text.split(' ')[0];
                 sendMessage(message.chat.id, 'You selected : ' + price);
-            } else if (!message.text.isNaN()){
+            } else if (!isNaN(message.text)){
                 // Custom price
                 var price = message.text;
                 if(parseInt(price) %5 !== 0)
