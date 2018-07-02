@@ -27,7 +27,7 @@ function handleCommands(message, connection){
     switch(message.text){
         case '/start':
         // Register user info (if not exists)
-        registerUser(message);
+        registerUser(message, connection);
 
         case '/test':
         // Test message
