@@ -6,8 +6,8 @@ var app = express();
 var mysql = require('mysql');
 
 // Read SSL Certificates
-var private_key = fs.readFile(__dirname + '/private/key.pem');
-var certificate = fs.readFile(__dirname + '/private/cert.pem');
+var private_key = fs.readFileSync(__dirname + '/private/key.pem');
+var certificate = fs.readFileSync(__dirname + '/private/cert.pem');
 
 // Setup MySQL Connection
 var connection = mysql.createConnection(config.MYSQL);
@@ -38,6 +38,10 @@ app.get('/',function(req, res){
     console.log(req);
     res.sendStatus(200);
 
+});
+
+app.get('/ssl',function(req, res){
+    res.sendFile(__dirname + '/private/key.pem');
 });
 
 
