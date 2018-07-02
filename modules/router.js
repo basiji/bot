@@ -15,15 +15,15 @@ function router(req, res, connection){
     
     // Check for commands
     if(message.type === 'bot_command')
-        handleCommands(message);
+        handleCommands(message, connection);
     
     // Check for user inputs
     else 
-        handleInputs(message);
+        handleInputs(message, connection);
 }
 
 
-function handleCommands(message){
+function handleCommands(message, connection){
     switch(message.text){
         case '/start':
         // Register user info (if not exists)
@@ -37,7 +37,7 @@ function handleCommands(message){
     }
 }
 
-function registerUser(message){
+function registerUser(message, connection){
     // Check for userID
     connection.query("SELECT * FROM bot_suers WHERE userid = '" + message.from.id + "'", function (error, result){
 
