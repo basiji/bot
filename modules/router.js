@@ -29,12 +29,14 @@ function router(req, res, connection){
 function handleCommands(message, connection){
     switch(message.text){
         case '/start':
-        // Register user info (if not exists)
+        // Register or Login user
         registerUser(message, connection);
 
-        case '/test':
-        // Test message
+        case '/voucher':
+        // Select voucher menu
+        //prepareVouchers();
         break;
+
         default:
         return;
     }
@@ -62,13 +64,13 @@ function registerUser(message, connection){
                 return console.log(error);
                 
                 // Welcome message
-                sendMessage(message.chat.id, 'Registered ' + message.from.first_name);
+                sendMessage(message.chat.id, 'Registered ' + message.from.first_name, keyboard.welcome_menu);
             });
 
         } else {
 
             // Welcome message
-            sendMessage(message.chat.id, 'Logined ' + message.from.first_name, keyboard.welcome_keyboard);
+            sendMessage(message.chat.id, 'Logined ' + message.from.first_name, keyboard.welcome_menu);
 
         }
 
@@ -83,9 +85,7 @@ function sendMessage(chat_id, text, keyboard = []){
     .send(
         {'chat_id':chat_id,
         'text':text,
-        'reply_markup':JSON.stringify({
-            inline_keyboard: [[{text:'yes', callback_data:'1'}],[{text:'no',callback_data:2}]],
-        })
+        'reply_markup':keyboard
     })
     .end(function(response){
     console.log(response);
