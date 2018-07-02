@@ -2,8 +2,13 @@ var config = require(__dirname + '/modules/config.js');
 var express = require('express');
 var fs = require('fs');
 var https = require('https');
-var app = express();
 var mysql = require('mysql');
+var bodyParser = require('body-parser')
+var app = express();
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
 
 // Read SSL Certificates
 var private_key = fs.readFileSync(__dirname + '/private/YOURPRIVATE.key');
@@ -35,7 +40,7 @@ https.createServer({
 // Routing
 app.post('/',function(req, res){
 
-    console.log(req);
+    console.log(req.body.message);
     res.sendStatus(200);
 
 });
