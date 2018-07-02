@@ -3,6 +3,7 @@ var unirest = require('unirest');
 var config = require('./config');
 var constants = require('./constants');
 var keyboard = require('./keyboard');
+var validator = require('email-validator');
 
 function router(req, res, connection){
     
@@ -44,9 +45,35 @@ function handleMessage(message, connection){
                 // Voucher Selected
                 var price = message.text.split(' ')[0];
                 sendMessage(message.chat.id, 'You selected : ' + price);
-            } 
+            } else if (!message.text.isNaN()){
+                // Custom price
+                var price = message.text;
+                if(parseInt(price) %5 !== 0)
+                return sendMessage(message.chat.id, 'Invalid input.');
+                return sendMessage(message.chat.id, 'You entered : ' + price + 'USD');
+            } else if (message.text.includes('@')) {
+                // Email verification
+                var email = message.text;
+                if(validator.validate(email)){
+                    updateUserEmail(message, email);
+                } else {
+                    sendMessage(message.chat.id, 'Email incorrect.');
+                }
+            } else {
+                return;
+            }
         
     }
+}
+
+function updateUserEmail(message, email){
+    connection.query("UPDATE bot_users WHERE userid = '" + message.from.id + "' SET email = '" + email + "'",function(error){
+        if(error)
+        sendMessage(message.chat.id, constants.SERVER_ERROR);
+        else 
+        sendMessage(message.chat.id, constants.EMAIL_UPDATE_SUCCESS);
+        
+    });
 }
 
 function registerUser(message, connection){
