@@ -84,9 +84,7 @@ function sendMessage(chat_id, text, keyboard = []){
         {'chat_id':chat_id,
         'text':text,
         'reply_markup':JSON.stringify({
-            resize_keyboard: true,
-            one_time_keyboard: true,
-            keyboard: [['yes'],['no']],
+            inline_keyboard: [[{text:'yes', callback_data:'1'}],[{text:'no',callback_data:2}]],
         })
     })
     .end(function(response){
