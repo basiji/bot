@@ -3,8 +3,8 @@ module.exports = {
         JSON.stringify({
             keyboard: [[{
                 text:'خرید ووچر پرفکت مانی',
-                request_contact:true,
-                request_location:true}]],
+                request_contact:false,
+                request_location:false}]],
             resize_keyboard:true,
             one_time_keyboard:true
         }),
