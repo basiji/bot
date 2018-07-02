@@ -66,7 +66,7 @@ function registerUser(message, connection){
         } else {
 
             // Welcome message
-            return sendMessage(message.chat.id, 'Logined ' + message.from.first_name);
+            sendMessage(message.chat.id, 'Logined ' + message.from.first_name);
 
         }
 
