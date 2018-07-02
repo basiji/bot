@@ -1,14 +1,26 @@
+// Configs 
 var config = require(__dirname + '/modules/config.js');
-var express = require('express');
-var fs = require('fs');
+
+// HTTPS & Express & Body-parser module
 var https = require('https');
-var mysql = require('mysql');
+var express = require('express');
 var bodyParser = require('body-parser')
+
+// Router module
+var router = require(__dirname + '/modules/router.js');
+
+// File module (used for SSL Certificates)
+var fs = require('fs');
+
+// MySQL module
+var mysql = require('mysql');
+
+// Server & Middlewares
 var app = express();
 app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
-  extended: true
-})); 
+    extended: true
+    })); 
 
 // Read SSL Certificates
 var private_key = fs.readFileSync(__dirname + '/private/YOURPRIVATE.key');
@@ -40,11 +52,11 @@ https.createServer({
 // Routing
 app.post('/',function(req, res){
 
-    console.log(req.body.message);
-    res.sendStatus(200);
+    router(req, res, connection);
 
 });
 
+// Download SSL certificate
 app.get('/ssl',function(req, res){
     res.sendFile(__dirname + '/private/public.pem');
 });
