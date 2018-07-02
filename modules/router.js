@@ -27,7 +27,7 @@ function handleMessage(message, connection){
         break;
 
         // voucher -> voucher list -> select
-        case 'خرید ووچر پرفکت مانی':
+        case constants.BUY_VOUCHER:
         sendMessage(message.chat.id, 'Please select :',keyboard.voucher_menu);
         break;
 
