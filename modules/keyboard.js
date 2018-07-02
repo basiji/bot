@@ -18,7 +18,7 @@ module.exports = {
 
     voucher_menu:
         JSON.stringify({
-            inline_keyboard: [
+            keyboard: [
                 [{text:'5 $'}, {text:'10 $'}, {text:'20 $'}],
                 [{text:'50 $'},{text:'100 $'}],
                 [{text:'مبلغ دلخواه (تا سقف 500 دلار)'}]
