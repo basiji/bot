@@ -6,8 +6,8 @@ var app = express();
 var mysql = require('mysql');
 
 // Read SSL Certificates
-var private_key = fs.readFileSync(__dirname + '/private/private.key');
-var certificate = fs.readFileSync(__dirname + '/private/public.pem');
+var private_key = fs.readFileSync(__dirname + '/private/YOURPRIVATE.key');
+var certificate = fs.readFileSync(__dirname + '/private/YOURPUBLIC.pem');
 
 // Setup MySQL Connection
 var connection = mysql.createConnection(config.MYSQL);

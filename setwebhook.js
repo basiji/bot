@@ -5,7 +5,7 @@ var unirest = require('unirest');
 unirest.post(config.BOTURL + 'setWebHook')
 .headers({'Content-Type': 'multipart/form-data'})
 .field('url', 'https://78.46.119.98:443') // Form field
-.attach('certificate', __dirname + '/private/public.pem') // Attachment
+.attach('certificate', __dirname + '/private/YOURPUBLIC.pem') // Attachment
 .end(function(response){
     console.log(response);
 });
