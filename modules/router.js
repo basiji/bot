@@ -55,7 +55,7 @@ function handleMessage(message, connection){
                 // Email verification
                 var email = message.text;
                 if(validator.validate(email)){
-                    updateUserEmail(message, email);
+                    updateUserEmail(message, email, connection);
                 } else {
                     sendMessage(message.chat.id, 'Email incorrect.');
                 }
@@ -66,7 +66,7 @@ function handleMessage(message, connection){
     }
 }
 
-function updateUserEmail(message, email){
+function updateUserEmail(message, email, connection){
     connection.query("UPDATE bot_users WHERE userid = '" + message.from.id + "' SET email = '" + email + "'",function(error){
         if(error)
         sendMessage(message.chat.id, constants.SERVER_ERROR);
