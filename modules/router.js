@@ -76,7 +76,7 @@ function handleMessage(message, connection){
                     },
                     body: {
                     MerchantID : config.ZARINPALTOKEN,
-                    Amount : irrprice,
+                    Amount : irrprice / 10,
                     Description : 'Some description',
                     CallbackURL : 'http://google.com'
                     },
