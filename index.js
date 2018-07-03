@@ -58,8 +58,8 @@ app.post('/',function(req, res){
 app.get('/gateway',function(req, res){
 
     // get price
-    var price = req.body.price;
-    console.log(price);
+    var price = req.query.price;
+    
     
 
 });

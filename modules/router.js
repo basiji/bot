@@ -5,6 +5,8 @@ var constants = require('./constants');
 var keyboard = require('./keyboard');
 var validator = require('email-validator');
 var CryptoJS = require('crypto-js');
+var request = require('request-promise')
+
 
 function router(req, res, connection){
     
@@ -48,9 +50,8 @@ function handleMessage(message, connection){
                 }, function(error, result){
                     
                     if(error)
-                    //return sendMessage(message.chat.id, constants.SERVER_ERROR, keyboard.voucher_menu);
-                    console.log(error);
-
+                    return sendMessage(message.chat.id, constants.SERVER_ERROR, keyboard.voucher_menu);
+                    
                     // Generate encrypted token
                     var payment_id = result.insertId;
                     var userid = message.from.id;
@@ -59,24 +60,53 @@ function handleMessage(message, connection){
                     var response = constants.INVOICE
                     .replace('%usdprice%',price)
                     .replace('%irrprice%',price * 5496);
+
+
+                    // Prepare payment gateway
+                    var options = {
+                    method: 'POST',
+                    uri: config.ZARINPAL_REQUEST,
+                    headers: {
+                    'cache-control': 'no-cache',
+                    'content-type': 'application/json'
+                    },
+                    body: {
+                    MerchantID : config.ZARINPALTOKEN,
+                    Amount : 1000,
+                    Description : 'Some description',
+                    CallbackURL : 'http://google.com'
+                    },
+                    json: true 
+                    };
+
+                    request(options)
+                    .then(function (data) {
+                    var Status = data.status;
                     
+                    // If requets failed
+                    if(Status !== 200)
+                    return sendMessage(message.chat.id, constants.SERVER_ERROR, keyboard.voucher_menu);
+                    
+                    var Authority = data.Authority;
                     // Send Message with payment button
                     sendMessage(
-                    message.chat.id,
-                    response,
-                    JSON.stringify({
-                    inline_keyboard:[
-                        [{
-                            text:'ورود به درگاه پرداخت',
-                            url:'https://Zarinp.al/188166'
-                        }]]
-                    }));
-    
-
-
+                        message.chat.id,
+                        response,
+                        JSON.stringify({
+                        inline_keyboard:[
+                            [{
+                                text:'ورود به درگاه پرداخت',
+                                url: config.ZARINPAL_GATEWAY + Authority + '/' + config.BANKS.ASAN
+                            }]]
+                        }));
+                    })
+                    
+                    // if request failed
+                    .catch(function (err) {
+                        return sendMessage(message.chat.id, constants.SERVER_ERROR, keyboard.voucher_menu);
+                    });
                 });
-
-                
+    
             } else if (!isNaN(message.text)){
                 // Custom price
                 var price = message.text;
