@@ -50,7 +50,8 @@ function handleMessage(message, connection){
                 }, function(error, result){
                     
                     if(error)
-                    return sendMessage(message.chat.id, constants.SERVER_ERROR, keyboard.voucher_menu);
+                    //return sendMessage(message.chat.id, constants.SERVER_ERROR, keyboard.voucher_menu);
+                    console.log(error);
                     
                     // Generate encrypted token
                     var payment_id = result.insertId;
@@ -85,8 +86,9 @@ function handleMessage(message, connection){
                     
                     // If requets failed
                     if(Status !== 200)
-                    return sendMessage(message.chat.id, constants.SERVER_ERROR, keyboard.voucher_menu);
-                    
+                    //return sendMessage(message.chat.id, constants.SERVER_ERROR, keyboard.voucher_menu);
+                    console.log(data);
+
                     var Authority = data.Authority;
                     // Send Message with payment button
                     sendMessage(
@@ -104,6 +106,7 @@ function handleMessage(message, connection){
                     // if request failed
                     .catch(function (err) {
                         return sendMessage(message.chat.id, constants.SERVER_ERROR, keyboard.voucher_menu);
+                        console.log(err);
                     });
                 });
     
