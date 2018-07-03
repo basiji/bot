@@ -208,7 +208,7 @@ function getOrders(message, connection){
                         .replace('%price%',item.price.toLocaleString())
                         .replace('%voucher%',item.vouchercode)
                         .replace('%activation%',item.status === '0' ? 'x' : item.activationcode)
-                        .replace('%date%','2018-02-07')
+                        .replace('%date%',item.subdate)
                         .replace('%status%',item.status === '0' ? 'Failed' : 'Success');
         });
 
