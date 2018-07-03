@@ -5,8 +5,7 @@ var constants = require('./constants');
 var keyboard = require('./keyboard');
 var validator = require('email-validator');
 var CryptoJS = require('crypto-js');
-var request = require('request-promise')
-
+var request = require('request-promise');
 
 function router(req, res, connection){
     
@@ -51,7 +50,7 @@ function handleMessage(message, connection){
         break;
 
         default:
-            if(message.text.includes('$'))
+            if(message.text.includes('$') && !isNaN(message.text.split(' ')[0]))
             prepareInvoice(message, connection);
             else 
             return;
@@ -85,6 +84,7 @@ function prepareInvoice(message, connection){
            
 
            var response = constants.INVOICE
+           .replace('%invoice%',payment_id)
            .replace('%usdprice%',usdprice)
            .replace('%irrprice%',irrprice.toLocaleString())
            .replace('%vouchercode%',vouchercode);
@@ -202,10 +202,9 @@ function getOrders(message, connection){
                         .replace('%id%',item.id)
                         .replace('%price%',item.price)
                         .replace('%voucher%',item.vouchercode)
-                        .replace('%activation',item.activationcode)
-                        .replace('%date','2018-02-07')
-                        .replace('%status%',item.activationcode.includes('xxx') ? 'Failed' : 'Success');
-
+                        .replace('%activation%',item.status === '0' ? 'x' : item.activationcode)
+                        .replace('%date%','2018-02-07')
+                        .replace('%status%',item.status === '0' ? 'Failed' : 'Success');
         });
 
         sendMessage(message.chat.id, response, keyboard.welcome_menu);
