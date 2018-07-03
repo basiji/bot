@@ -68,7 +68,7 @@ function handleMessage(message, connection){
                     inline_keyboard:[
                         [{
                             text:'ورود به درگاه پرداخت',
-                            url:'https://Zarinp.al/188166' + token
+                            url:'https://Zarinp.al/188166'
                         }]]
                     }));
     
