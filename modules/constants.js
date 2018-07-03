@@ -11,6 +11,6 @@ module.exports = {
     WELCOME_MESSAGE:'به سامانه خودکار فروش پرفکت مانی خوش آمدید. جهت ادامه کار لطفا یکی از گزینه ها را انتخاب نمایید.',
     INVOICE:"<b>Invoice</b> \n<pre>Amount: %usdprice% USD \n" +
     "Exchange rate: 56,000 \nIRR: %irrprice% </pre>\n ---- \n<b>Voucher info </b>\n<pre>Voucher Code:" +
-    " <a>%vouchercode%</a></pre> \n<pre>Activation code: 1234-56789-xxxx</pre>" +
+    "%vouchercode%</pre> \n<pre>Activation code: 1234-56789-xxxx</pre>" +
     "\n \n کد فعالسازی پس از انجام تراکنش بصورت اتوماتیک بروزرسانی و نمایان خواهد شد."
 }
