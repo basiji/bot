@@ -4,6 +4,7 @@ var config = require('./config');
 var constants = require('./constants');
 var keyboard = require('./keyboard');
 var validator = require('email-validator');
+var CryptoJS = require('crypto-js');
 
 function router(req, res, connection){
     
@@ -37,18 +38,44 @@ function handleMessage(message, connection){
 
         default:
             if(message.text.includes('$')){
-                // Voucher Selected
+                // Voucher Selected -> create transaction record
                 var price = message.text.split(' ')[0];
-                var response = constants.INVOICE
+
+                connection.query("INSERT INTO bot_transactions SET ?",
+                {
+                    userid:message.from.id,
+                    price:price
+                }, function(error, result){
+                    
+                    if(error)
+                    return sendMessage(message.chat.id, constants.SERVER_ERROR, keyboard.voucher_menu);
+                    
+                    // Generate encrypted token
+                    var payment_id = result.insertId;
+                    var userid = message.from.id;
+                    var token = CryptoJS.AES.encrypt(payment_id + "#" + userid, config.SECRET_KEY);
+
+                    var response = constants.INVOICE
                     .replace('%usdprice%',price)
-                    .replace('%irrprice%',price * 5000);
-                sendMessage(
+                    .replace('%irrprice%',price * 5496);
+                    
+                    // Send Message with payment button
+                    sendMessage(
                     message.chat.id,
                     response,
                     JSON.stringify({
-                    inline_keyboard:[[{text:'ورود به درگاه پرداخت', callback_data:price * 5000}]]
+                    inline_keyboard:[
+                        [{
+                            text:'ورود به درگاه پرداخت',
+                            url:'http://78.46.119.98:443/gateway?token=' + token
+                        }]]
                     }));
+    
 
+
+                });
+
+                
             } else if (!isNaN(message.text)){
                 // Custom price
                 var price = message.text;

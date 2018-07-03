@@ -49,10 +49,17 @@ https.createServer({
     console.log('Listening on port ' + config.PORT);
 });
 
-// Routing
+// Bot commands
 app.post('/',function(req, res){
-
     router(req, res, connection);
+});
+
+// Payment gateway
+app.get('/gateway',function(req, res){
+
+    // get price
+    var price = req.body.price;
+    
 
 });
 
