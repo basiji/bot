@@ -191,7 +191,7 @@ function registerUser(message, connection){
     });
 }
 
-function getOrders(message){
+function getOrders(message, connection){
     connection.query("SELECT * FROM bot_transactions WHERE userid = '" + message.from.id + "' ORDER BY ID DESC",function(error, result){
 
         if(error)

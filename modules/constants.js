@@ -16,5 +16,6 @@ module.exports = {
     " %vouchercode% \nActivation code: xxxxxxxxxx </pre> " +
     "\n \n کد فعالسازی پس از انجام تراکنش بصورت اتوماتیک ارسال خواهد شد.",
     NO_ORDER_MESSAGE:'شما تا بحال سفارشی نداشته اید.',
-    ORDER_TEMPLATE:"<b>Invoice #%id% </b>\n <pre>Date: %date% \nAmount: %price% IRR\nStatus: %status%</pre>\n----\n"
+    ORDER_TEMPLATE:"<b>Invoice #%id% </b>\n <pre>Date: %date% \nAmount: %price% IRR\nStatus: %status%</pre>\n----\n",
+    SUPPORT_MESSAGE:"جهت ارتباط با بخش پشتیبانی و پیگیری مشکلات لطفا با آیدی @pmvoucher_admin در ارتباط باشید."
 }
