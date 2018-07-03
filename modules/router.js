@@ -207,9 +207,9 @@ function getOrders(message, connection){
                         .replace('%id%',item.id)
                         .replace('%price%',item.price.toLocaleString())
                         .replace('%voucher%',item.vouchercode)
-                        .replace('%activation%',item.status === '0' ? 'x' : item.activationcode)
+                        .replace('%activation%',item.status === 0 ? 'x' : item.activationcode)
                         .replace('%date%',item.subdate)
-                        .replace('%status%',item.status === '0' ? 'Failed' : 'Success');
+                        .replace('%status%',item.status === 0 ? 'Failed' : 'Success');
         });
 
         sendMessage(message.chat.id, response, keyboard.welcome_menu);

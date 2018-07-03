@@ -12,7 +12,7 @@ module.exports = {
     CALL_TO_ACTION:'لطفا یک گزینه را انتخاب نمایید.',
     FOO:'12345678987654321',
     WELCOME_MESSAGE:'به سامانه خودکار فروش پرفکت مانی خوش آمدید. جهت ادامه کار لطفا یکی از گزینه ها را انتخاب نمایید.',
-    INVOICE:"<b>Invoice</b> <a href='#'> %invoice% </a> \n<pre>Amount: %usdprice% USD \n" +
+    INVOICE:"<b>Invoice</b> <a href='#'> #%invoice% </a> \n<pre>Amount: %usdprice% USD \n" +
     "Exchange rate: 56,000 \nIRR: %irrprice% </pre>\n ---- \n<b>Information</b>\n<pre>Voucher code:" +
     " %vouchercode%</pre> " +
     "\n \n کد فعالسازی پس از انجام تراکنش بصورت اتوماتیک برای شما ارسال خواهد شد.",
