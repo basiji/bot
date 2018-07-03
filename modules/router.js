@@ -61,7 +61,7 @@ function handleMessage(message, connection){
                     
 
                     var response = constants.INVOICE
-                    .replace('%usdprice%',price)
+                    .replace('%usdprice%',usdprice)
                     .replace('%irrprice%',irrprice.toLocaleString())
                     .replace('%vouchercode%',Math.floor((Math.random() * 9999999999) + 1));
 
