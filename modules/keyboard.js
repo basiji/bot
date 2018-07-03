@@ -3,10 +3,7 @@ var constants = require('./constants');
 module.exports = {
     welcome_menu :
         JSON.stringify({
-            keyboard: [[{
-                text:constants.BUY_VOUCHER,
-                request_contact:false,
-                request_location:false}]],
+            keyboard: [[constants.BUY_VOUCHER],[constants.ORDER_HISTORY, constants.SUPPORT]],
             resize_keyboard:true,
             one_time_keyboard:true
         }),
