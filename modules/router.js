@@ -42,7 +42,7 @@ function handleMessage(message, connection){
         break;
 
         case constants.ORDER_HISTORY:
-        getOrders(message);
+        getOrders(message, connection);
         break;
 
         // voucher -> voucher list -> select
