@@ -18,7 +18,7 @@ module.exports = {
             keyboard: [
                 [{text:'10 $'}, {text:'20 $'}, {text:'50 $'}],
                 [{text:'100 $'},{text:'200 $'},{text:'500 $'}],
-                ['بازگشت'],
+                [constants.MAIN_MENU],
             ],
             resize_keyboard: true,
         }),

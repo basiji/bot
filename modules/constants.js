@@ -8,9 +8,11 @@ module.exports = {
     CUSTOM_VOUCHER:'مبلغ دلخواه (تا سقف 500 دلار)',
     EMAIL_UPDATE_SUCCESS:'آدرس ایمیل با موفقیت ثبت شد.',
     SELECT_VOUCHER:'لطفا مبلغ مورد نظر خود را انتخاب نمایید.',
+    MAIN_MENU:'منوی اصلی',
+    CALL_TO_ACTION:'لطفا یک گزینه را انتخاب نمایید.',
     WELCOME_MESSAGE:'به سامانه خودکار فروش پرفکت مانی خوش آمدید. جهت ادامه کار لطفا یکی از گزینه ها را انتخاب نمایید.',
-    INVOICE:"<b>Invoice</b> \n<pre>Amount: %usdprice% USD \n" +
-    "Exchange rate: 56,000 \nIRR: %irrprice% </pre>\n ---- \n<b>Voucher info </b>\n<pre>Voucher Code:" +
-    "%vouchercode%</pre> \n<pre>Activation code: 1234-56789-xxxx</pre>" +
+    INVOICE:"<b>Invoice</b> #123 \n<pre>Amount: %usdprice% USD \n" +
+    "Exchange rate: 56,000 \nIRR: %irrprice% </pre>\n ---- \n<b>Information [SECRET] </b>\n<pre>Code:" +
+    " %vouchercode%</pre> \n<pre>Activation: xxxxxxxxxx </pre>" +
     "\n \n کد فعالسازی پس از انجام تراکنش بصورت اتوماتیک بروزرسانی و نمایان خواهد شد."
 }

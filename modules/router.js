@@ -33,6 +33,10 @@ function handleMessage(message, connection){
         registerUser(message, connection);
         break;
 
+        case constants.MAIN_MENU:
+        sendMessage(message.chat.id, constants.CALL_TO_ACTION,keyboard.welcome_menu);
+        break;
+
         // voucher -> voucher list -> select
         case constants.BUY_VOUCHER:
         sendMessage(message.chat.id, constants.SELECT_VOUCHER,keyboard.voucher_menu);
