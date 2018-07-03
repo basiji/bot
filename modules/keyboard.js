@@ -16,12 +16,11 @@ module.exports = {
     voucher_menu:
         JSON.stringify({
             keyboard: [
-                [{text:'5 $'}, {text:'10 $'}, {text:'20 $'}],
-                [{text:'50 $'},{text:'100 $'},{text:'200 $'}],
-                [{text:'300 $'},{text:'500 $'}],
+                [{text:'10 $'}, {text:'20 $'}, {text:'50 $'}],
+                [{text:'100 $'},{text:'200 $'},{text:'500 $'}],
+                ['بازگشت'],
             ],
             resize_keyboard: true,
-            one_time_keyboard: true
         }),
 
 

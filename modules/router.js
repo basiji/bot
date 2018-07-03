@@ -102,8 +102,7 @@ function handleMessage(message, connection){
                             [{
                                 text:'ورود به درگاه پرداخت',
                                 url: config.ZARINPAL_GATEWAY + Authority + '/' + config.BANKS.ASAN
-                            }]],
-                        keyboard:[['بازگشت']]
+                            }]]
                         }));
                     })
                     
