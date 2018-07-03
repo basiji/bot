@@ -42,7 +42,7 @@ function handleMessage(message, connection){
             if(message.text.includes('$')){
                 // Voucher Selected -> create transaction record
                 var usdprice = message.text.split(' ')[0];
-                var irrprice = usdprice.config.USDPRICE * 10;
+                var irrprice = usdprice * config.USDPRICE * 10;
 
                 connection.query("INSERT INTO bot_transactions SET ?",
                 {
