@@ -98,14 +98,13 @@ function registerUser(message, connection){
                 return console.log(error);
                 
                 // Welcome message
-                sendMessage(message.chat.id, 'Registered ' + message.from.first_name, keyboard.welcome_menu);
+                sendMessage(message.chat.id, constants.WELCOME_MESSAGE + message.from.first_name, keyboard.voucher_menu);
             });
 
         } else {
 
             // Welcome message
-            sendMessage(message.chat.id, 'Logined ' + message.from.first_name, keyboard.welcome_menu);
-
+            sendMessage(message.chat.id, constants.WELCOME_MESSAGE + message.from.first_name, keyboard.voucher_menu);
         }
 
 
