@@ -90,6 +90,7 @@ function prepareInvoice(message, connection){
            .replace('%invoice%',payment_id)
            .replace('%usdprice%',usdprice)
            .replace('%irrprice%',irrprice.toLocaleString())
+           .replace('%xrate%',config.USDPRICE)
            .replace('%vouchercode%',vouchercode);
 
 
