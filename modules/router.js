@@ -185,7 +185,8 @@ function sendMessage(chat_id, text, keyboard = []){
     .send({
         'chat_id':chat_id,
         'text':text,
-        'reply_markup':keyboard
+        'reply_markup':keyboard,
+        'parse_mode':'HTML'
     })
     .end(function(response){
     console.log(response);
