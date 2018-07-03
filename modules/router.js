@@ -6,6 +6,8 @@ var keyboard = require('./keyboard');
 var validator = require('email-validator');
 var CryptoJS = require('crypto-js');
 var request = require('request-promise');
+var dateFormat = require('dateformat');
+var now = new Date();
 
 function router(req, res, connection){
     
@@ -69,7 +71,8 @@ function prepareInvoice(message, connection){
            userid:message.from.id,
            price:irrprice,
            vouchercode:vouchercode,
-           activationcode:activationcode
+           activationcode:activationcode,
+           subdate:dateFormat(now, "yyyy-mm-dd")
 
        }, function(error, result){
            
@@ -163,8 +166,10 @@ function registerUser(message, connection){
 
             connection.query("INSERT INTO bot_users SET ?",
             {
-                userid:message.from.id,
-                name:message.from.first_name,
+                userid: message.from.id,
+                name: message.from.first_name + (message.from.last_name || ''),
+                username: message.from.username || 'NA',
+                subdate: dateFormat(now, "yyyy-mm-dd")
             },
             function(error){
                 
@@ -200,7 +205,7 @@ function getOrders(message, connection){
 
             response += constants.ORDER_TEMPLATE
                         .replace('%id%',item.id)
-                        .replace('%price%',item.price)
+                        .replace('%price%',item.price.toLocaleString())
                         .replace('%voucher%',item.vouchercode)
                         .replace('%activation%',item.status === '0' ? 'x' : item.activationcode)
                         .replace('%date%','2018-02-07')

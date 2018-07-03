@@ -14,8 +14,8 @@ module.exports = {
     WELCOME_MESSAGE:'به سامانه خودکار فروش پرفکت مانی خوش آمدید. جهت ادامه کار لطفا یکی از گزینه ها را انتخاب نمایید.',
     INVOICE:"<b>Invoice</b> <a href='#'> %invoice% </a> \n<pre>Amount: %usdprice% USD \n" +
     "Exchange rate: 56,000 \nIRR: %irrprice% </pre>\n ---- \n<b>Information</b>\n<pre>Voucher code:" +
-    " %vouchercode% \nActivation code: xxxxxxxxxxxxxxxxx </pre> " +
-    "\n \n کد فعالسازی پس از انجام تراکنش بصورت اتوماتیک ارسال خواهد شد.",
+    " %vouchercode%</pre> " +
+    "\n \n کد فعالسازی پس از انجام تراکنش بصورت اتوماتیک برای شما ارسال خواهد شد.",
     NO_ORDER_MESSAGE:'شما تا بحال سفارشی نداشته اید.',
     ORDER_TEMPLATE:"<b>Invoice #%id% </b>\n <pre>Date: %date% \nAmount: %price% IRR \nStatus: %status%\ne-Voucher: %voucher% \nActivation code: %activation%</pre>\n----\n",
     SUPPORT_MESSAGE:"جهت ارتباط با بخش پشتیبانی و پیگیری مشکلات لطفا با آیدی @pmvoucher_admin در ارتباط باشید."
