@@ -8,5 +8,5 @@ module.exports = {
     },
     SSLPASSPHRASE:'9092301202',
     BOTURL:'https://api.telegram.org/bot553238766:AAEQrMPpniS1zi2Co5TFGdU-F18ck3suBQI/',
-    SECRET_KEY='c5#GMg+9BaJHH(GO%Q)d25TMXMerW037o,~83wmQ/$54yFDI@R|&nHR/l?^8-&K'
+    SECRET_KEY:'c5#GMg+9BaJHH(GO%Q)d25TMXMerW037o,~83wmQ/$54yFDI@R|&nHR/l?^8-&K'
 }
