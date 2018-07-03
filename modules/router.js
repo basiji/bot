@@ -37,6 +37,14 @@ function handleMessage(message, connection){
         sendMessage(message.chat.id, constants.CALL_TO_ACTION,keyboard.welcome_menu);
         break;
 
+        case constants.SUPPORT:
+        sendMessage(message.chat.id, constants.SUPPORT_MESSAGE, keyboard.welcome_menu);
+        break;
+
+        case constants.ORDER_HISTORY:
+        getOrders(message);
+        break;
+
         // voucher -> voucher list -> select
         case constants.BUY_VOUCHER:
         sendMessage(message.chat.id, constants.SELECT_VOUCHER,keyboard.voucher_menu);
@@ -179,6 +187,30 @@ function registerUser(message, connection){
             sendMessage(message.chat.id, constants.WELCOME_MESSAGE, keyboard.welcome_menu);
         }
 
+
+    });
+}
+
+function getOrders(message){
+    connection.query("SELECT * FROM bot_transactions WHERE userid = '" + message.from.id + "' ORDER BY ID DESC",function(error, result){
+
+        if(error)
+        return sendMessage(message.chat.id, constants.SERVER_ERROR);
+
+        if(result.length === 0)
+        return sendMessage(message.chat.id, constants.NO_ORDER_MESSAGE);
+
+        var response = '';
+        result.forEach(function(item){
+
+            response += constants.ORDER_TEMPLATE
+                        .replace('%id%',item.id)
+                        .replace('%date','2018-02-07')
+                        .replace('%status%','Success');
+
+        });
+
+        sendMessage(message.chat.id, response, keyboard.welcome_menu);
 
     });
 }
