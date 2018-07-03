@@ -41,12 +41,13 @@ function handleMessage(message, connection){
         default:
             if(message.text.includes('$')){
                 // Voucher Selected -> create transaction record
-                var price = message.text.split(' ')[0];
+                var usdprice = message.text.split(' ')[0];
+                var irrprice = usdprice.config.USDPRICE * 10;
 
                 connection.query("INSERT INTO bot_transactions SET ?",
                 {
                     userid:message.from.id,
-                    price:price
+                    price:irrprice
                 }, function(error, result){
                     
                     if(error)
@@ -57,10 +58,12 @@ function handleMessage(message, connection){
                     var payment_id = result.insertId;
                     var userid = message.from.id;
                     var token = CryptoJS.AES.encrypt(payment_id + "#" + userid, config.SECRET_KEY);
+                    
 
                     var response = constants.INVOICE
                     .replace('%usdprice%',price)
-                    .replace('%irrprice%',price * config.USDPRICE);
+                    .replace('%irrprice%',irrprice.toLocaleString())
+                    .replace('%vouchercode%',Math.floor((Math.random() * 9999999999) + 1));
 
 
                     // Prepare payment gateway
@@ -73,7 +76,7 @@ function handleMessage(message, connection){
                     },
                     body: {
                     MerchantID : config.ZARINPALTOKEN,
-                    Amount : 1000,
+                    Amount : price * config.USDPRICE * 10,
                     Description : 'Some description',
                     CallbackURL : 'http://google.com'
                     },
