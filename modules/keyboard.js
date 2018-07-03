@@ -17,7 +17,8 @@ module.exports = {
         JSON.stringify({
             keyboard: [
                 [{text:'5 $'}, {text:'10 $'}, {text:'20 $'}],
-                [{text:'50 $'},{text:'100 $'}],
+                [{text:'50 $'},{text:'100 $'},{text:'200 $'}],
+                [{text:'300 $'},{text:'500 $'},{text:'1000 $'}],
             ]
         }),
 

@@ -52,7 +52,7 @@ function handleMessage(message, connection){
                     if(error)
                     //return sendMessage(message.chat.id, constants.SERVER_ERROR, keyboard.voucher_menu);
                     console.log(error);
-                    
+
                     // Generate encrypted token
                     var payment_id = result.insertId;
                     var userid = message.from.id;
@@ -60,7 +60,7 @@ function handleMessage(message, connection){
 
                     var response = constants.INVOICE
                     .replace('%usdprice%',price)
-                    .replace('%irrprice%',price * 5496);
+                    .replace('%irrprice%',price * config.USDPRICE);
 
 
                     // Prepare payment gateway

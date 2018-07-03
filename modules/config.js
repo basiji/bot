@@ -14,5 +14,6 @@ module.exports = {
     ZARINPAL_GATEWAY:'https://www.zarinpal.com/pg/StartPay/',
     BANKS:{
         ASAN:'asan'
-    }
+    },
+    USDPRICE:5496
 }
