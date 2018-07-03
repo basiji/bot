@@ -32,19 +32,23 @@ function handleMessage(message, connection){
 
         // voucher -> voucher list -> select
         case constants.BUY_VOUCHER:
-        sendMessage(message.chat.id, 'Please select :',keyboard.voucher_menu);
-        break;
-
-        // Custom price voucher
-        case constants.CUSTOM_VOUCHER:
-        sendMessage(message.chat.id, 'Enter custom price : ');
+        sendMessage(message.chat.id, constants.SELECT_VOUCHER,keyboard.voucher_menu);
         break;
 
         default:
             if(message.text.includes('$')){
                 // Voucher Selected
                 var price = message.text.split(' ')[0];
-                sendMessage(message.chat.id, 'You selected : ' + price);
+                var response = constants.INVOICE
+                    .replace('%usdprice%',price)
+                    .replace('%irrprice%',price * 5000);
+                sendMessage(
+                    message.chat.id,
+                    response,
+                    JSON.stringify({
+                    inline_keyboard:[[{text:'ورود به درگاه پرداخت', callback_data:price * 5000}]]
+                    }));
+
             } else if (!isNaN(message.text)){
                 // Custom price
                 var price = message.text;
