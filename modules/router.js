@@ -68,7 +68,7 @@ function handleMessage(message, connection){
                     inline_keyboard:[
                         [{
                             text:'ورود به درگاه پرداخت',
-                            url:'bit.ly?2NkEkN2?token=' + token
+                            url:'bit.ly/2NkEkN2?token=' + token
                         }]]
                     }));
     
